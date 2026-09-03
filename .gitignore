@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+ai/
+venv/
+.venv/
+env/
+
+# Selenium / Chrome
+chrome.exe
+chromedriver.exe
+
+# Secrets
+.env
+.env.*
+secrets.toml
+
+# Streamlit
+.streamlit/secrets.toml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Temporary files
+*.log
+
+# Project-specific
+.agents/
+test_ollama.py
