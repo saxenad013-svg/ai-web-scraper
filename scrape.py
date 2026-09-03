@@ -1,23 +1,54 @@
+# scrape.py
+
+import os
 import time
 from urllib.parse import quote
 
+from dotenv import load_dotenv
 from selenium.webdriver import Remote, ChromeOptions
 from selenium.webdriver.chromium.remote_connection import ChromiumRemoteConnection
 from bs4 import BeautifulSoup
 
 
 # ============================================================
+# LOAD ENVIRONMENT VARIABLES
+# ============================================================
+
+load_dotenv()
+
+
+# ============================================================
 # BRIGHT DATA LOGIN
 # ============================================================
 
-USERNAME = "brd-customer-hl_5bfc6b47-zone-ai_scraper"
+USERNAME = os.getenv(
+    "BRIGHT_DATA_USERNAME",
+    "brd-customer-hl_5bfc6b47-zone-ai_scraper"
+)
 
-# PUT YOUR BRIGHT DATA PASSWORD HERE
-PASSWORD = "j346hxjfsx4e"
+PASSWORD = os.getenv(
+    "BRIGHT_DATA_PASSWORD"
+)
 
-AUTH = f"{quote(USERNAME, safe='')}:{quote(PASSWORD, safe='')}"
 
-SBR_WEBDRIVER = f"https://{AUTH}@brd.superproxy.io:9515"
+# ============================================================
+# CREATE BRIGHT DATA CONNECTION
+# ============================================================
+
+if PASSWORD:
+
+    AUTH = (
+        f"{quote(USERNAME, safe='')}:"
+        f"{quote(PASSWORD, safe='')}"
+    )
+
+    SBR_WEBDRIVER = (
+        f"https://{AUTH}@brd.superproxy.io:9515"
+    )
+
+else:
+
+    SBR_WEBDRIVER = None
 
 
 # ============================================================
@@ -27,6 +58,14 @@ SBR_WEBDRIVER = f"https://{AUTH}@brd.superproxy.io:9515"
 def scrape_website(website):
 
     print("Connecting to Bright Data...")
+
+    if not PASSWORD:
+
+        print(
+            "ERROR: Bright Data password is not configured."
+        )
+
+        return None
 
     driver = None
 
@@ -58,17 +97,34 @@ def scrape_website(website):
 
         html = driver.page_source
 
-        print("Successfully scraped website!")
-        print("HTML length:", len(html))
+        print(
+            "Successfully scraped website!"
+        )
+
+        print(
+            "HTML length:",
+            len(html)
+        )
 
         return html
 
     except Exception as e:
 
-        print("\n========== SCRAPER ERROR ==========")
-        print(type(e).__name__)
-        print(str(e))
-        print("====================================\n")
+        print(
+            "\n========== SCRAPER ERROR =========="
+        )
+
+        print(
+            type(e).__name__
+        )
+
+        print(
+            str(e)
+        )
+
+        print(
+            "====================================\n"
+        )
 
         return None
 
@@ -77,9 +133,15 @@ def scrape_website(website):
         if driver:
 
             try:
+
                 driver.quit()
-                print("Browser closed.")
+
+                print(
+                    "Browser closed."
+                )
+
             except Exception:
+
                 pass
 
 
@@ -94,40 +156,37 @@ def extract_body_content(html_content):
         "html.parser"
     )
 
+
     # ========================================================
     # BOOKS TO SCRAPE
     # ========================================================
-    #
-    # Books to Scrape uses:
-    #
-    # article.product_pod
-    # h3 a -> full title is in the "title" attribute
-    # p.price_color -> price
-    # p.star-rating -> rating is stored in the class
-    #
-    # Example:
-    #
-    # <p class="star-rating Three">
-    #
-    # ========================================================
 
-    books = soup.select("article.product_pod")
+    books = soup.select(
+        "article.product_pod"
+    )
 
     if books:
 
-        print(f"Books to Scrape detected!")
-        print(f"Found {len(books)} books.")
+        print(
+            "Books to Scrape detected!"
+        )
+
+        print(
+            f"Found {len(books)} books."
+        )
 
         products = []
 
-        # Rating conversion
         rating_map = {
+
             "One": "1/5",
             "Two": "2/5",
             "Three": "3/5",
             "Four": "4/5",
             "Five": "5/5"
+
         }
+
 
         for book in books:
 
@@ -137,18 +196,22 @@ def extract_body_content(html_content):
 
             title = "Unknown"
 
-            title_link = book.select_one("h3 a")
+            title_link = book.select_one(
+                "h3 a"
+            )
 
             if title_link:
 
-                # The title attribute contains the FULL title
-                title = title_link.get("title")
+                title = title_link.get(
+                    "title"
+                )
 
-                # Fallback if title attribute doesn't exist
                 if not title:
+
                     title = title_link.get_text(
                         strip=True
                     )
+
 
             # ------------------------------------------------
             # PRICE
@@ -165,6 +228,7 @@ def extract_body_content(html_content):
                 price = price_element.get_text(
                     strip=True
                 )
+
 
             # ------------------------------------------------
             # RATING
@@ -187,9 +251,12 @@ def extract_body_content(html_content):
 
                     if class_name in rating_map:
 
-                        rating = rating_map[class_name]
+                        rating = rating_map[
+                            class_name
+                        ]
 
                         break
+
 
             # ------------------------------------------------
             # PRODUCT OUTPUT
@@ -201,19 +268,41 @@ def extract_body_content(html_content):
                 f"Rating: {rating}"
             )
 
-            products.append(product_text)
+            products.append(
+                product_text
+            )
 
-            # Print to terminal so we can verify extraction
-            print("\n------------------------------")
-            print("Product:", title)
-            print("Price:", price)
-            print("Rating:", rating)
+
+            print(
+                "\n------------------------------"
+            )
+
+            print(
+                "Product:",
+                title
+            )
+
+            print(
+                "Price:",
+                price
+            )
+
+            print(
+                "Rating:",
+                rating
+            )
+
 
         if products:
 
-            print("\nBooks successfully extracted!")
+            print(
+                "\nBooks successfully extracted!"
+            )
 
-            return "\n\n".join(products)
+            return "\n\n".join(
+                products
+            )
+
 
     # ========================================================
     # AMAZON PRODUCT RESULTS
@@ -225,7 +314,9 @@ def extract_body_content(html_content):
 
     if amazon_products:
 
-        print("Amazon product listings detected!")
+        print(
+            "Amazon product listings detected!"
+        )
 
         products = []
 
@@ -238,11 +329,16 @@ def extract_body_content(html_content):
 
             if text:
 
-                products.append(text)
+                products.append(
+                    text
+                )
 
         if products:
 
-            return "\n\n".join(products)
+            return "\n\n".join(
+                products
+            )
+
 
     # ========================================================
     # COMMON PRODUCT CONTAINERS
@@ -263,19 +359,23 @@ def extract_body_content(html_content):
 
         '[class*="product-tile"]',
 
-        'article'
+        "article"
+
     ]
 
     found_products = []
 
     for selector in product_selectors:
 
-        elements = soup.select(selector)
+        elements = soup.select(
+            selector
+        )
 
         if elements:
 
             print(
-                f"Found {len(elements)} elements using {selector}"
+                f"Found {len(elements)} "
+                f"elements using {selector}"
             )
 
             for element in elements:
@@ -287,11 +387,14 @@ def extract_body_content(html_content):
 
                 if text and len(text) > 20:
 
-                    found_products.append(text)
+                    found_products.append(
+                        text
+                    )
 
             if found_products:
 
                 break
+
 
     # ========================================================
     # REMOVE DUPLICATES
@@ -303,11 +406,16 @@ def extract_body_content(html_content):
 
         if product not in unique_products:
 
-            unique_products.append(product)
+            unique_products.append(
+                product
+            )
 
     if unique_products:
 
-        return "\n\n".join(unique_products)
+        return "\n\n".join(
+            unique_products
+        )
+
 
     # ========================================================
     # FALLBACK TO NORMAL BODY
@@ -333,7 +441,7 @@ def clean_body_content(body_content):
         "html.parser"
     )
 
-    # Remove unnecessary elements
+
     for element in soup(
         [
             "script",
@@ -346,11 +454,12 @@ def clean_body_content(body_content):
 
         element.extract()
 
+
     cleaned_content = soup.get_text(
         separator="\n"
     )
 
-    # Clean empty lines
+
     lines = []
 
     for line in cleaned_content.splitlines():
@@ -359,9 +468,14 @@ def clean_body_content(body_content):
 
         if line:
 
-            lines.append(line)
+            lines.append(
+                line
+            )
 
-    cleaned_content = "\n".join(lines)
+
+    cleaned_content = "\n".join(
+        lines
+    )
 
     return cleaned_content
 
@@ -376,10 +490,15 @@ def split_dom_content(
 ):
 
     return [
-        dom_content[i:i + max_length]
+
+        dom_content[
+            i:i + max_length
+        ]
+
         for i in range(
             0,
             len(dom_content),
             max_length
         )
+
     ]

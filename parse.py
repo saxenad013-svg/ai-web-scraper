@@ -1,123 +1,146 @@
-from langchain_ollama import OllamaLLM
-from langchain_core.prompts import ChatPromptTemplate
+# parse.py
+
+import os
+
+import streamlit as st
+
+from dotenv import load_dotenv
+from openai import OpenAI
 
 
-template = """
-You are a precise web data extraction AI.
+# ============================================================
+# LOAD LOCAL .ENV
+# ============================================================
 
-Your ONLY job is to extract the information requested by the user
-from the webpage text.
-
-DO NOT summarize.
-DO NOT rewrite.
-DO NOT shorten product names.
-DO NOT invent information.
-DO NOT explain anything.
-
-WEBPAGE TEXT:
-{dom_content}
-
-USER REQUEST:
-{parse_description}
-
-STRICT RULES:
-
-1. Extract ONLY information explicitly present in the webpage text.
-
-2. Product names must be copied exactly from the webpage text.
-
-3. NEVER shorten a product name.
-
-4. NEVER summarize or rewrite a product name.
-
-5. Keep all words, punctuation, capitalization, and numbers.
-
-6. Extract the exact price belonging to each product.
-
-7. Extract the rating belonging to each product.
-
-8. NEVER guess a rating.
-
-9. Keep each product's name, price, and rating together.
-
-10. Do not mix information between different products.
-
-11. If information is missing, write "Not available".
-
-12. Do not add explanations, introductions, conclusions, or commentary.
-
-13. Return ONLY the requested product information.
-
-OUTPUT FORMAT:
-
-Product: [complete product name]
-Price: [price]
-Rating: [rating]
-
-Product: [complete product name]
-Price: [price]
-Rating: [rating]
-"""
+load_dotenv()
 
 
-model = OllamaLLM(
-    model="qwen2.5:3b-instruct",
-    base_url="http://localhost:11434"
-)
+# ============================================================
+# GET HUGGING FACE TOKEN
+# ============================================================
 
+HF_TOKEN = os.getenv("HF_TOKEN")
+
+
+# ============================================================
+# GET STREAMLIT CLOUD SECRET
+# ============================================================
+
+if not HF_TOKEN:
+
+    try:
+        HF_TOKEN = st.secrets["HF_TOKEN"]
+
+    except Exception:
+        HF_TOKEN = None
+
+
+# ============================================================
+# CHECK TOKEN
+# ============================================================
+
+if not HF_TOKEN:
+
+    client = None
+
+else:
+
+    client = OpenAI(
+        base_url="https://router.huggingface.co/v1",
+        api_key=HF_TOKEN,
+    )
+
+
+# ============================================================
+# AI PARSER
+# ============================================================
 
 def parse_with_ollama(dom_chunks, parse_description):
 
-    prompt = ChatPromptTemplate.from_template(
-        template
-    )
+    if not HF_TOKEN:
 
-    chain = prompt | model
+        return (
+            "Hugging Face token is not configured. "
+            "Add HF_TOKEN to your .env file locally "
+            "or Streamlit Secrets in the cloud."
+        )
 
     parsed_results = []
 
-    total_chunks = len(dom_chunks)
-
-    for i, chunk in enumerate(dom_chunks, start=1):
-
-        print(
-            f"\nProcessing chunk {i} of {total_chunks}..."
-        )
+    for i, chunk in enumerate(
+        dom_chunks,
+        start=1
+    ):
 
         try:
 
-            response = chain.invoke(
-                {
-                    "dom_content": chunk,
-                    "parse_description": parse_description
-                }
+            response = client.chat.completions.create(
+
+                model="Qwen/Qwen3.8-27B:ovhcloud",
+
+                messages=[
+
+                    {
+                        "role": "system",
+                        "content": """
+You are an information extraction AI.
+
+Extract ONLY information explicitly present
+in the webpage text.
+
+Rules:
+- Do not guess.
+- Do not invent information.
+- Do not explain your answer.
+- Do not add introductions.
+- Do not add conclusions.
+- Return only the requested information.
+- If multiple items are found, put each item on a separate line.
+"""
+                    },
+
+                    {
+                        "role": "user",
+                        "content": f"""
+WEBPAGE TEXT:
+
+{chunk}
+
+
+USER REQUEST:
+
+{parse_description}
+
+
+Extract the requested information now.
+"""
+                    }
+
+                ],
             )
 
-            response = response.strip()
+            result = response.choices[0].message.content
+
+            if result:
+
+                result = result.strip()
+
+                if result:
+                    parsed_results.append(result)
 
             print(
-                f"Parsed batch {i} of {total_chunks}"
+                f"Parsed batch {i} "
+                f"of {len(dom_chunks)}"
             )
-
-            if response:
-                parsed_results.append(response)
 
         except Exception as e:
 
             print(
-                f"Error processing chunk {i}:"
-            )
-
-            print(
-                type(e).__name__
-            )
-
-            print(
-                str(e)
+                f"Error parsing batch {i}: {e}"
             )
 
     if not parsed_results:
 
         return "No matching information found."
 
-    return "\n\n".join(parsed_results)
+    return "\n".join(parsed_results)
