@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
-
 /* =========================================================
    LANDING PAGE
 ========================================================= */
@@ -30,8 +29,14 @@ function LandingPage({ onStart }) {
         </div>
 
         <div className="nav-links">
-          <a href="#platform">Platform</a>
-          <a href="#features">Features</a>
+
+          <a href="#platform">
+            Platform
+          </a>
+
+          <a href="#features">
+            Features
+          </a>
 
           <button
             className="nav-launch"
@@ -39,6 +44,7 @@ function LandingPage({ onStart }) {
           >
             Launch App <span>→</span>
           </button>
+
         </div>
 
       </nav>
@@ -51,8 +57,11 @@ function LandingPage({ onStart }) {
       <main className="hero">
 
         <div className="hero-status">
+
           <span className="hero-status-dot"></span>
+
           AI SCRAPER ONLINE
+
         </div>
 
 
@@ -110,8 +119,13 @@ function LandingPage({ onStart }) {
       >
 
         <div className="section-label">
-          <span>01</span>
+
+          <span>
+            01
+          </span>
+
           PLATFORM
+
         </div>
 
 
@@ -122,9 +136,11 @@ function LandingPage({ onStart }) {
           <div className="window-top">
 
             <div className="window-dots">
+
               <span></span>
               <span></span>
               <span></span>
+
             </div>
 
             <div className="window-title">
@@ -132,8 +148,11 @@ function LandingPage({ onStart }) {
             </div>
 
             <div className="window-status">
+
               <span></span>
+
               ONLINE
+
             </div>
 
           </div>
@@ -149,8 +168,15 @@ function LandingPage({ onStart }) {
             <aside className="platform-sidebar">
 
               <div className="sidebar-brand">
-                <span>FIELD</span>
-                <strong>GLASS</strong>
+
+                <span>
+                  FIELD
+                </span>
+
+                <strong>
+                  GLASS
+                </strong>
+
               </div>
 
               <div className="sidebar-label">
@@ -159,29 +185,55 @@ function LandingPage({ onStart }) {
 
 
               <div className="sidebar-item active">
-                <span>◇</span>
+
+                <span>
+                  ◇
+                </span>
+
                 Scraper
+
               </div>
 
+
               <div className="sidebar-item">
-                <span>◇</span>
+
+                <span>
+                  ◇
+                </span>
+
                 Projects
+
               </div>
 
+
               <div className="sidebar-item">
-                <span>□</span>
+
+                <span>
+                  □
+                </span>
+
                 History
+
               </div>
 
+
               <div className="sidebar-item">
-                <span>⚙</span>
+
+                <span>
+                  ⚙
+                </span>
+
                 Settings
+
               </div>
 
 
               <div className="sidebar-bottom">
+
                 <span className="sidebar-online"></span>
+
                 SYSTEM READY
+
               </div>
 
             </aside>
@@ -194,6 +246,7 @@ function LandingPage({ onStart }) {
               <div className="preview-heading">
 
                 <div>
+
                   <h3>
                     Web Scraper
                   </h3>
@@ -201,6 +254,7 @@ function LandingPage({ onStart }) {
                   <p>
                     Extract structured data from any website.
                   </p>
+
                 </div>
 
                 <span className="preview-badge">
@@ -239,6 +293,7 @@ function LandingPage({ onStart }) {
                 <div className="preview-box">
 
                   <div className="preview-box-header">
+
                     <span>
                       SCRAPED CONTENT
                     </span>
@@ -246,12 +301,14 @@ function LandingPage({ onStart }) {
                     <span>
                       READY
                     </span>
+
                   </div>
 
 
                   <div className="preview-lines">
 
                     <div></div>
+
                     <div></div>
 
                     <div className="medium"></div>
@@ -289,9 +346,11 @@ function LandingPage({ onStart }) {
 
 
                   <div className="ai-preview-text">
+
                     Extract all product names,
                     prices and descriptions from
                     the scraped webpage.
+
                   </div>
 
 
@@ -338,8 +397,13 @@ function LandingPage({ onStart }) {
       >
 
         <div className="section-label">
-          <span>02</span>
+
+          <span>
+            02
+          </span>
+
           FEATURES
+
         </div>
 
 
@@ -441,10 +505,19 @@ function AIResultDisplay({ result }) {
 
   try {
 
-    if (typeof result === "object" && result !== null) {
+    if (
+      typeof result === "object" &&
+      result !== null
+    ) {
+
       parsedResult = result;
-    } else if (typeof result === "string") {
+
+    } else if (
+      typeof result === "string"
+    ) {
+
       parsedResult = JSON.parse(result);
+
     }
 
   } catch (error) {
@@ -458,7 +531,10 @@ function AIResultDisplay({ result }) {
      Invalid / plain text fallback
   ------------------------------------------------------- */
 
-  if (!parsedResult || typeof parsedResult !== "object") {
+  if (
+    !parsedResult ||
+    typeof parsedResult !== "object"
+  ) {
 
     return (
       <div className="result-plain-text">
@@ -473,10 +549,12 @@ function AIResultDisplay({ result }) {
     parsedResult.title ||
     "Extraction Results";
 
+
   const items =
     Array.isArray(parsedResult.items)
       ? parsedResult.items
       : [];
+
 
   const summary =
     parsedResult.summary ||
@@ -521,7 +599,7 @@ function AIResultDisplay({ result }) {
 
 
   /* -------------------------------------------------------
-     Determine whether the results contain details
+     Determine whether results contain details
   ------------------------------------------------------- */
 
   const hasDetails = items.some(
@@ -539,6 +617,7 @@ function AIResultDisplay({ result }) {
   ------------------------------------------------------- */
 
   const detailFields = [];
+
 
   items.forEach((item) => {
 
@@ -583,6 +662,7 @@ function AIResultDisplay({ result }) {
   ------------------------------------------------------- */
 
   return (
+
     <div className="structured-result">
 
 
@@ -598,8 +678,10 @@ function AIResultDisplay({ result }) {
       <div className="result-meta">
 
         <span className="result-count">
+
           {items.length} RESULT
           {items.length !== 1 ? "S" : ""}
+
         </span>
 
         <span className="result-line"></span>
@@ -618,6 +700,7 @@ function AIResultDisplay({ result }) {
           {items.map((item, index) => {
 
             let itemName = "";
+
 
             if (
               item &&
@@ -639,6 +722,7 @@ function AIResultDisplay({ result }) {
 
 
             return (
+
               <div
                 className="result-item"
                 key={index}
@@ -653,6 +737,7 @@ function AIResultDisplay({ result }) {
                 </div>
 
               </div>
+
             );
 
           })}
@@ -685,9 +770,11 @@ function AIResultDisplay({ result }) {
                 </th>
 
                 {detailFields.map((field) => (
+
                   <th key={field}>
                     {formatFieldName(field)}
                   </th>
+
                 ))}
 
               </tr>
@@ -706,7 +793,9 @@ function AIResultDisplay({ result }) {
                   item?.product ||
                   "Unknown";
 
+
                 return (
+
                   <tr key={index}>
 
                     <td className="table-number">
@@ -717,10 +806,12 @@ function AIResultDisplay({ result }) {
                       {itemName}
                     </td>
 
+
                     {detailFields.map((field) => {
 
                       let value =
                         item?.details?.[field];
+
 
                       if (
                         value === undefined ||
@@ -732,18 +823,22 @@ function AIResultDisplay({ result }) {
 
                       }
 
+
                       return (
+
                         <td
                           key={field}
                           className="table-detail"
                         >
                           {String(value)}
                         </td>
+
                       );
 
                     })}
 
                   </tr>
+
                 );
 
               })}
@@ -778,6 +873,7 @@ function AIResultDisplay({ result }) {
       )}
 
     </div>
+
   );
 }
 
@@ -810,9 +906,15 @@ function DashboardPage({ onBack }) {
   async function handleScrape() {
 
     if (!url.trim()) {
-      setError("Please enter a website URL.");
+
+      setError(
+        "Please enter a website URL."
+      );
+
       return;
+
     }
+
 
     setError("");
 
@@ -825,8 +927,14 @@ function DashboardPage({ onBack }) {
 
     try {
 
+      /*
+        IMPORTANT:
+        This request goes to the deployed
+        Render backend, NOT localhost.
+      */
+
       const response = await fetch(
-        "http://127.0.0.1:5000/scrape",
+        "https://fieldglass-backend.onrender.com/scrape",
         {
           method: "POST",
 
@@ -837,6 +945,7 @@ function DashboardPage({ onBack }) {
           body: JSON.stringify({
             url: url.trim(),
           }),
+
         }
       );
 
@@ -845,10 +954,12 @@ function DashboardPage({ onBack }) {
 
 
       if (!response.ok) {
+
         throw new Error(
           data.error ||
           "Unable to scrape website."
         );
+
       }
 
 
@@ -860,7 +971,8 @@ function DashboardPage({ onBack }) {
     } catch (err) {
 
       setError(
-        err.message
+        err.message ||
+        "Failed to connect to the scraper backend."
       );
 
     } finally {
@@ -868,6 +980,7 @@ function DashboardPage({ onBack }) {
       setScraping(false);
 
     }
+
   }
 
 
@@ -878,20 +991,24 @@ function DashboardPage({ onBack }) {
   async function handleAnalyze() {
 
     if (!content) {
+
       setError(
         "Scrape a website first."
       );
 
       return;
+
     }
 
 
     if (!description.trim()) {
+
       setError(
         "Please enter an extraction instruction."
       );
 
       return;
+
     }
 
 
@@ -904,8 +1021,14 @@ function DashboardPage({ onBack }) {
 
     try {
 
-     const response = await fetch(
-  "https://fieldglass-backend.onrender.com/analyze",
+      /*
+        IMPORTANT:
+        This request also goes to the deployed
+        Render backend.
+      */
+
+      const response = await fetch(
+        "https://fieldglass-backend.onrender.com/analyze",
         {
           method: "POST",
 
@@ -917,6 +1040,7 @@ function DashboardPage({ onBack }) {
             content: content,
             description: description.trim(),
           }),
+
         }
       );
 
@@ -925,10 +1049,12 @@ function DashboardPage({ onBack }) {
 
 
       if (!response.ok) {
+
         throw new Error(
           data.error ||
           "Unable to analyze content."
         );
+
       }
 
 
@@ -940,7 +1066,8 @@ function DashboardPage({ onBack }) {
     } catch (err) {
 
       setError(
-        err.message
+        err.message ||
+        "Failed to connect to the AI backend."
       );
 
     } finally {
@@ -948,6 +1075,7 @@ function DashboardPage({ onBack }) {
       setAnalyzing(false);
 
     }
+
   }
 
 
@@ -1343,7 +1471,9 @@ function DashboardPage({ onBack }) {
       </main>
 
     </div>
+
   );
+
 }
 
 
@@ -1444,7 +1574,9 @@ function App() {
 
   function goToLanding() {
 
-    if (window.location.hash) {
+    if (
+      window.location.hash
+    ) {
 
       window.history.pushState(
         {},
@@ -1463,12 +1595,16 @@ function App() {
     Show Dashboard
   */
 
-  if (page === "dashboard") {
+  if (
+    page === "dashboard"
+  ) {
 
     return (
+
       <DashboardPage
         onBack={goToLanding}
       />
+
     );
 
   }
