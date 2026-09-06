@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Oxanium:wght@500;600;700;800&display=swap");
 
 
 /* =========================================================
@@ -26,6 +26,13 @@
   --yellow-bright: #ffd43b;
   --yellow-orange: #ff9f00;
 
+  /* DARK CYBER LOGO PALETTE */
+  --logo-cyan: #2aa8ad;
+  --logo-cyan-dark: #0f5961;
+  --logo-violet: #a04aa9;
+  --logo-violet-dark: #59246b;
+  --logo-magenta: #c936a5;
+
   --white: #f7f4fa;
 
   --text: #b6adbf;
@@ -36,15 +43,14 @@
 
 
   /*
-    The first font is used if it exists on the computer.
-    The fallbacks keep the logo script-like.
+    Oxanium is loaded from Google Fonts so the logo uses the
+    same web-delivered font across Windows, Android, iPhone,
+    tablets, and modern browsers.
   */
 
   --script:
-    "Magneto",
-    "Brush Script MT",
-    "Segoe Script",
-    cursive;
+    "Oxanium",
+    sans-serif;
 
 
   --sans:
@@ -309,22 +315,20 @@ a {
 
 .nav-field {
   color:
-    white;
+    var(--logo-cyan);
+
+  text-shadow:
+    0 0 6px rgba(42, 168, 173, 0.16);
 }
 
 
 .nav-glass {
-
   color:
-    var(--yellow);
+    var(--logo-violet);
 
   text-shadow:
-
-    0 0 5px
-    rgba(255, 201, 40, 0.65),
-
-    0 0 14px
-    rgba(255, 159, 0, 0.45);
+    0 0 6px rgba(160, 74, 169, 0.18),
+    0 0 12px rgba(89, 36, 107, 0.10);
 }
 
 
@@ -504,6 +508,7 @@ a {
 
 /* =========================================================
    MAIN LOGO
+   Deep petrol + ultraviolet cyberpunk wordmark
 ========================================================= */
 
 .hero-logo {
@@ -521,55 +526,176 @@ a {
     0;
 
   line-height:
-    0.8;
+    0.82;
 
   font-family:
     var(--script);
 
   font-size:
-    clamp(115px, 13vw, 220px);
+    clamp(108px, 12.2vw, 205px);
 
   font-weight:
-    700;
+    800;
 
   letter-spacing:
-    -6px;
+    -5px;
 
   position:
     relative;
+
+  isolation:
+    isolate;
+
+  transform:
+    skewX(-1.4deg)
+    scaleX(0.97);
+
+  text-rendering:
+    geometricPrecision;
+}
+
+
+/* ---------------------------------------------------------
+   Integrated atmosphere
+--------------------------------------------------------- */
+
+.hero-logo::after {
+
+  content:
+    "";
+
+  position:
+    absolute;
+
+  z-index:
+    -2;
+
+  left:
+    12%;
+
+  right:
+    8%;
+
+  top:
+    8%;
+
+  bottom:
+    -18%;
+
+  background:
+
+    radial-gradient(
+      ellipse at 32% 50%,
+      rgba(22, 139, 149, 0.12),
+      transparent 39%
+    ),
+
+    radial-gradient(
+      ellipse at 70% 50%,
+      rgba(112, 44, 132, 0.15),
+      transparent 45%
+    );
+
+  filter:
+    blur(31px);
+
+  pointer-events:
+    none;
+}
+
+
+/* ---------------------------------------------------------
+   Whole-word RGB glitch layer
+--------------------------------------------------------- */
+
+.hero-logo::before {
+
+  content:
+    attr(data-text);
+
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  display:
+    flex;
+
+  align-items:
+    baseline;
+
+  justify-content:
+    center;
+
+  font:
+    inherit;
+
+  letter-spacing:
+    inherit;
+
+  color:
+    transparent;
+
+  text-shadow:
+    -3px 0 rgba(27, 201, 213, 0.68),
+    3px 0 rgba(201, 54, 165, 0.62);
+
+  opacity:
+    0;
+
+  mix-blend-mode:
+    screen;
+
+  pointer-events:
+    none;
+
+  z-index:
+    5;
+
+  clip-path:
+    inset(45% 0 45% 0);
+
+  animation:
+    logoRgbGlitch 7.8s
+    infinite
+    steps(1, end);
 }
 
 
 /* =========================================================
-   FIELD
-   CLEAN WHITE
+   SCRAPE — DARK PETROL / TEAL
 ========================================================= */
 
 .logo-field {
-
-  color:
-    #f7f4fa;
-
-  text-shadow:
-    none;
 
   position:
     relative;
 
   z-index:
     2;
+
+  color:
+    #2aa8ad;
+
+  text-shadow:
+
+    0 0 1px
+    rgba(139, 239, 240, 0.42),
+
+    0 0 5px
+    rgba(42, 168, 173, 0.28),
+
+    0 0 13px
+    rgba(15, 89, 97, 0.22);
 }
 
 
 /* =========================================================
-   GLASS
-   ELECTRIC AMBER / YELLOW
+   NOVA — DARK ULTRAVIOLET / PLUM
 ========================================================= */
 
 .logo-glass {
-
-  color:
-    #ffe39a;
 
   position:
     relative;
@@ -577,31 +703,28 @@ a {
   z-index:
     3;
 
+  color:
+    #9a4ba8;
+
   text-shadow:
 
-    0 0 4px
-    rgba(255, 249, 205, 1),
+    0 0 1px
+    rgba(218, 169, 227, 0.38),
 
-    0 0 10px
-    rgba(255, 230, 120, 0.98),
+    0 0 5px
+    rgba(160, 74, 169, 0.25),
 
-    0 0 20px
-    rgba(255, 201, 40, 0.95),
-
-    0 0 38px
-    rgba(255, 159, 0, 0.8),
-
-    0 0 65px
-    rgba(190, 105, 0, 0.5);
+    0 0 14px
+    rgba(89, 36, 107, 0.24);
 
   animation:
-    glassFlicker 6s infinite;
+    logoFlicker
+    9s
+    infinite;
 }
 
 
-/* =========================================================
-   GLOW BEHIND GLASS
-========================================================= */
+/* Small colored atmosphere directly behind NOVA. */
 
 .logo-glass::after {
 
@@ -615,37 +738,37 @@ a {
     -1;
 
   left:
-    10%;
+    2%;
 
   right:
-    0;
+    -4%;
 
   top:
-    20%;
+    12%;
 
   bottom:
-    -10%;
+    -12%;
 
   background:
 
     radial-gradient(
       ellipse,
-      rgba(255, 201, 40, 0.27),
-      rgba(255, 159, 0, 0.12) 42%,
-      transparent 75%
+      rgba(128, 48, 149, 0.12),
+      rgba(22, 125, 137, 0.025) 48%,
+      transparent 74%
     );
 
   filter:
-    blur(35px);
+    blur(23px);
 
   pointer-events:
     none;
 }
 
 
-/* =========================================================
-   GLITCH COPY
-========================================================= */
+/* ---------------------------------------------------------
+   NOVA chromatic glitch
+--------------------------------------------------------- */
 
 .logo-glass::before {
 
@@ -659,7 +782,7 @@ a {
     0;
 
   color:
-    #ffd43b;
+    transparent;
 
   opacity:
     0;
@@ -669,55 +792,57 @@ a {
 
   text-shadow:
 
-    -5px 0
-    rgba(255, 190, 0, 0.8),
+    -2px 0
+    rgba(24, 196, 209, 0.78),
 
-    5px 0
-    rgba(255, 245, 180, 0.7);
+    2px 0
+    rgba(201, 54, 165, 0.70);
 
   clip-path:
-    inset(40% 0 45% 0);
+    inset(44% 0 44% 0);
 
   animation:
-    logoGlitch 7s infinite;
+    glassGlitch
+    8.2s
+    infinite
+    steps(1, end);
 }
 
 
 /* =========================================================
-   MAIN LOGO FLICKER
+   SUBTLE FLICKER
 ========================================================= */
 
-@keyframes glassFlicker {
+@keyframes logoFlicker {
 
   0%,
-  14%,
-  16%,
-  18%,
-  55%,
-  57%,
+  23%,
+  25%,
+  61%,
+  63%,
   100% {
+
     opacity:
       1;
   }
 
-  15%,
-  17%,
-  56% {
-    opacity:
-      0.86;
-  }
+  24%,
+  62% {
 
+    opacity:
+      0.94;
+  }
 }
 
 
 /* =========================================================
-   MAIN LOGO GLITCH
+   WHOLE WORD RGB GLITCH
 ========================================================= */
 
-@keyframes logoGlitch {
+@keyframes logoRgbGlitch {
 
   0%,
-  72%,
+  79%,
   100% {
 
     opacity:
@@ -727,42 +852,93 @@ a {
       translateX(0);
 
     clip-path:
-      inset(40% 0 45% 0);
+      inset(45% 0 45% 0);
   }
 
-
-  73% {
+  80% {
 
     opacity:
-      0.75;
+      0.52;
 
     transform:
-      translateX(-5px);
+      translateX(-2px);
 
     clip-path:
-      inset(18% 0 68% 0);
+      inset(21% 0 66% 0);
   }
 
-
-  74% {
+  81% {
 
     opacity:
-      0.5;
+      0.30;
 
     transform:
-      translateX(5px);
+      translateX(2px);
 
     clip-path:
-      inset(62% 0 15% 0);
+      inset(66% 0 21% 0);
   }
 
+  82% {
 
-  75% {
+    opacity:
+      0;
+
+    transform:
+      translateX(0);
+  }
+}
+
+
+/* =========================================================
+   SECONDARY NOVA GLITCH
+========================================================= */
+
+@keyframes glassGlitch {
+
+  0%,
+  78%,
+  100% {
+
+    opacity:
+      0;
+
+    transform:
+      translateX(0);
+
+    clip-path:
+      inset(44% 0 44% 0);
+  }
+
+  79% {
+
+    opacity:
+      0.38;
+
+    transform:
+      translateX(-2px);
+
+    clip-path:
+      inset(27% 0 58% 0);
+  }
+
+  80% {
+
+    opacity:
+      0.22;
+
+    transform:
+      translateX(2px);
+
+    clip-path:
+      inset(61% 0 24% 0);
+  }
+
+  81% {
 
     opacity:
       0;
   }
-
 }
 
 
@@ -1907,15 +2083,14 @@ a {
 }
 
 
-/* CLEAN WHITE FIELD */
+/* CYAN FIELD */
 
 .dashboard-brand span {
-
   color:
-    #f7f4fa;
+    var(--logo-cyan);
 
   text-shadow:
-    none;
+    0 0 5px rgba(42, 168, 173, 0.14);
 
   position:
     relative;
@@ -1925,35 +2100,22 @@ a {
 }
 
 
-/* YELLOW NEON GLASS */
+/* VIOLET NEON GLASS */
 
 .dashboard-brand strong {
-
   position:
     relative;
 
   color:
-    #ffe39a;
+    var(--logo-violet);
 
   text-shadow:
-
-    0 0 3px
-    rgba(255, 250, 210, 1),
-
-    0 0 7px
-    rgba(255, 230, 120, 0.95),
-
-    0 0 14px
-    rgba(255, 201, 40, 0.9),
-
-    0 0 25px
-    rgba(255, 159, 0, 0.7),
-
-    0 0 40px
-    rgba(190, 105, 0, 0.4);
+    0 0 1px rgba(218, 169, 227, 0.34),
+    0 0 6px rgba(160, 74, 169, 0.20),
+    0 0 14px rgba(89, 36, 107, 0.12);
 
   animation:
-    dashboardGlassFlicker 6s infinite;
+    dashboardGlassFlicker 9s infinite;
 
   z-index:
     3;
@@ -2983,7 +3145,7 @@ a {
   .hero-logo {
 
     font-size:
-      clamp(90px, 14vw, 150px);
+      clamp(82px, 13vw, 138px);
   }
 
 
@@ -3052,7 +3214,7 @@ a {
   .hero-logo {
 
     font-size:
-      clamp(65px, 17vw, 110px);
+      clamp(60px, 16vw, 104px);
 
     letter-spacing:
       -3px;
@@ -3201,7 +3363,7 @@ a {
   .hero-logo {
 
     font-size:
-      62px;
+      58px;
 
     letter-spacing:
       -2px;
@@ -3258,4 +3420,802 @@ a {
       none !important;
   }
 
+}
+
+/* =========================================================
+   SCRAPENOVE CYBERPUNK INTERFACE
+   Visual override layer — preserves existing glitch/keyframes.
+========================================================= */
+
+:root {
+  --bg: #07060b;
+  --bg-deep: #04040a;
+  --surface: #0b0a12;
+  --surface-2: #0f0d18;
+  --line-cyber: rgba(174, 130, 255, 0.14);
+  --line-cyber-strong: rgba(174, 130, 255, 0.28);
+  --logo-dark: #777582;
+}
+
+body {
+  background: var(--bg);
+}
+
+.landing-page {
+  background:
+    radial-gradient(circle at 50% 22%, rgba(123, 67, 210, 0.15), transparent 30%),
+    radial-gradient(circle at 8% 78%, rgba(78, 35, 145, 0.09), transparent 26%),
+    radial-gradient(circle at 94% 35%, rgba(255, 201, 40, 0.025), transparent 24%),
+    linear-gradient(180deg, #05050a 0%, #090711 46%, #05050a 100%);
+}
+
+.landing-page::before,
+.dashboard::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.035;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255,255,255,0.9) 0px,
+    rgba(255,255,255,0.9) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  mix-blend-mode: screen;
+}
+
+.cyber-grid {
+  opacity: 0.42;
+  background-image:
+    linear-gradient(rgba(147, 99, 235, 0.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(147, 99, 235, 0.075) 1px, transparent 1px),
+    linear-gradient(rgba(255, 201, 40, 0.025) 1px, transparent 1px);
+  background-size: 72px 72px, 72px 72px, 360px 360px;
+}
+
+.nav-brand {
+  font-family: var(--script);
+  font-size: 18px;
+  letter-spacing: 1.5px;
+}
+
+.nav-field,
+.nav-glass {
+  color: var(--logo-dark) !important;
+  text-shadow: none !important;
+}
+
+.nav-brand::after {
+  content: "AI WEB INTELLIGENCE";
+  margin-left: 12px;
+  padding-left: 12px;
+  border-left: 1px solid rgba(255,255,255,0.09);
+  color: #4e4b58;
+  font-family: var(--mono);
+  font-size: 7px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+}
+
+.hero {
+  min-height: 690px;
+}
+
+.hero-logo {
+  filter: drop-shadow(0 20px 45px rgba(0,0,0,0.38));
+}
+
+/* Single darker logo color. Existing neon/glitch layers remain untouched. */
+.logo-field,
+.logo-glass {
+  color: var(--logo-dark) !important;
+}
+
+.hero-logo::after {
+  opacity: 0.72;
+}
+
+.hero-status {
+  padding: 8px 13px;
+  border: 1px solid rgba(89, 220, 168, 0.13);
+  background: rgba(89, 220, 168, 0.025);
+  box-shadow: inset 0 0 24px rgba(89, 220, 168, 0.025);
+}
+
+.primary-button,
+.secondary-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.primary-button::before,
+.secondary-button::before,
+.url-control button::before,
+.analyze-button::before {
+  content: "";
+  position: absolute;
+  left: -120%;
+  top: 0;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.55s ease;
+}
+
+.primary-button:hover::before,
+.secondary-button:hover::before,
+.url-control button:hover::before,
+.analyze-button:hover::before {
+  left: 140%;
+}
+
+.platform-section,
+.features-section {
+  position: relative;
+}
+
+.platform-window {
+  border-color: var(--line-cyber);
+  background: rgba(7, 6, 12, 0.82);
+  box-shadow:
+    0 35px 110px rgba(0,0,0,0.46),
+    0 0 0 1px rgba(155,77,255,0.025),
+    inset 0 0 80px rgba(91, 45, 160, 0.025);
+}
+
+.window-top {
+  background: rgba(139, 92, 215, 0.035);
+  border-bottom-color: rgba(174,130,255,0.11);
+}
+
+.window-title {
+  color: #5e5969;
+}
+
+.preview-box,
+.feature-card,
+.dashboard-card {
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.preview-box:hover,
+.feature-card:hover,
+.dashboard-card:hover {
+  border-color: rgba(174,130,255,0.19);
+  box-shadow: 0 12px 45px rgba(0,0,0,0.18), inset 0 0 35px rgba(120,70,200,0.025);
+}
+
+.feature-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(255,255,255,0.018), transparent 70%);
+}
+
+.feature-card::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 34px;
+  height: 1px;
+  background: var(--yellow);
+  box-shadow: 0 0 10px rgba(255,201,40,0.35);
+}
+
+.landing-footer {
+  color: #4d4955;
+}
+
+/* =========================================================
+   DASHBOARD CYBERPUNK PASS
+========================================================= */
+
+.dashboard {
+  position: relative;
+  background:
+    radial-gradient(circle at 72% 8%, rgba(124, 64, 215, 0.11), transparent 28%),
+    radial-gradient(circle at 100% 90%, rgba(255, 201, 40, 0.025), transparent 24%),
+    linear-gradient(135deg, #05050a 0%, #0a0811 48%, #06050b 100%);
+}
+
+.dashboard-sidebar {
+  position: relative;
+  z-index: 3;
+  background: rgba(5,4,9,0.78);
+  border-right-color: rgba(174,130,255,0.11);
+  box-shadow: 20px 0 70px rgba(0,0,0,0.16);
+}
+
+.dashboard-brand span,
+.dashboard-brand strong {
+  color: var(--logo-dark) !important;
+}
+
+.dashboard-brand span {
+  text-shadow: none !important;
+}
+
+.dashboard-main {
+  position: relative;
+  z-index: 2;
+}
+
+.dashboard-header h1 {
+  letter-spacing: -0.4px;
+}
+
+.dashboard-card {
+  border-color: rgba(174,130,255,0.105);
+  background: linear-gradient(145deg, rgba(18,15,28,0.72), rgba(7,6,12,0.72));
+}
+
+.card-heading {
+  background: linear-gradient(90deg, rgba(155,77,255,0.025), transparent 65%);
+}
+
+.url-control input,
+.ai-card textarea,
+.content-viewer,
+.result-viewer {
+  background: rgba(2,2,6,0.48);
+}
+
+.url-control input:focus,
+.ai-card textarea:focus {
+  border-color: rgba(174,130,255,0.34);
+  box-shadow: 0 0 0 3px rgba(155,77,255,0.055), 0 0 25px rgba(155,77,255,0.04);
+}
+
+.dashboard-nav.active {
+  background: linear-gradient(90deg, rgba(155,77,255,0.11), rgba(155,77,255,0.025));
+  border-color: rgba(155,77,255,0.14);
+  box-shadow: inset 2px 0 0 var(--yellow);
+}
+
+@media (max-width: 750px) {
+  .nav-brand::after {
+    display: none;
+  }
+
+  .landing-page::before,
+  .dashboard::before {
+    opacity: 0.02;
+  }
+}
+
+/* =========================================================
+   SCRAPENOVE — REFINED CYBERPUNK PASS
+   Stronger neon atmosphere, restrained futuristic details.
+   Existing glitch animations/keyframes are intentionally left intact.
+========================================================= */
+
+:root {
+  --sn-bg: #05040a;
+  --sn-bg-purple: #0b0715;
+  --sn-silver: #8f91a3;
+  --sn-silver-hot: #b8bbd0;
+  --sn-purple: #9b4dff;
+  --sn-purple-hot: #c47cff;
+  --sn-cyan: #35d7e6;
+  --sn-yellow: #ffd12a;
+}
+
+body {
+  background: var(--sn-bg);
+}
+
+.landing-page {
+  background:
+    radial-gradient(ellipse at 50% 20%, rgba(116, 44, 235, 0.20) 0%, transparent 31%),
+    radial-gradient(ellipse at 12% 62%, rgba(46, 106, 180, 0.055) 0%, transparent 24%),
+    radial-gradient(ellipse at 88% 50%, rgba(174, 55, 255, 0.07) 0%, transparent 27%),
+    linear-gradient(180deg, #030309 0%, #080512 48%, #040309 100%);
+}
+
+/* Subtle HUD frame — decorative only. */
+.landing-page::after {
+  content: "";
+  position: fixed;
+  inset: 16px;
+  z-index: 2;
+  pointer-events: none;
+  border: 1px solid rgba(155, 77, 255, 0.07);
+  clip-path: polygon(
+    0 0, 32% 0, 32.5% 5px, 67.5% 5px, 68% 0, 100% 0,
+    100% 100%, 72% 100%, 71.5% calc(100% - 5px),
+    28.5% calc(100% - 5px), 28% 100%, 0 100%
+  );
+}
+
+.cyber-grid {
+  opacity: 0.34;
+  background-image:
+    linear-gradient(rgba(154, 82, 255, 0.085) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(154, 82, 255, 0.085) 1px, transparent 1px),
+    linear-gradient(rgba(52, 215, 230, 0.018) 1px, transparent 1px);
+  background-size: 72px 72px, 72px 72px, 360px 360px;
+}
+
+/* More visible but still restrained ambient lighting. */
+.ambient-one {
+  background: rgba(112, 42, 230, 0.17);
+  filter: blur(115px);
+}
+
+.ambient-two {
+  background: rgba(38, 86, 170, 0.075);
+  filter: blur(105px);
+}
+
+.ambient-three {
+  background: rgba(255, 170, 20, 0.045);
+  filter: blur(100px);
+}
+
+/* ---------------------------------------------------------
+   BRAND / NAV
+--------------------------------------------------------- */
+
+.nav-brand {
+  font-family: var(--script);
+  text-transform: uppercase;
+}
+
+.nav-field,
+.nav-glass {
+  color: var(--sn-silver) !important;
+  text-shadow:
+    0 0 4px rgba(155, 77, 255, 0.20),
+    0 0 12px rgba(155, 77, 255, 0.10) !important;
+}
+
+.nav-brand::after {
+  color: rgba(184, 187, 208, 0.36);
+}
+
+/* ---------------------------------------------------------
+   MAIN SCRAPENOVE WORDMARK
+--------------------------------------------------------- */
+
+.hero-logo {
+  filter:
+    drop-shadow(0 16px 38px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 22px rgba(125, 57, 230, 0.10));
+}
+
+.logo-field,
+.logo-glass {
+  /* Same single dark-metal color for both halves. */
+  color: var(--sn-silver) !important;
+  text-shadow:
+    0 0 1px rgba(230, 233, 250, 0.52),
+    0 0 5px rgba(166, 103, 255, 0.38),
+    0 0 13px rgba(123, 56, 235, 0.26),
+    0 0 28px rgba(86, 36, 180, 0.16) !important;
+}
+
+/* Boost only the atmospheric glow behind the logo.
+   Glitch layers and their animations are untouched. */
+.hero-logo::after {
+  opacity: 0.92;
+  filter: blur(38px);
+}
+
+/* ---------------------------------------------------------
+   STATUS / HUD DETAILS
+--------------------------------------------------------- */
+
+.hero-status {
+  border-color: rgba(155, 77, 255, 0.22);
+  background: rgba(115, 52, 220, 0.045);
+  box-shadow:
+    inset 0 0 25px rgba(155, 77, 255, 0.035),
+    0 0 18px rgba(155, 77, 255, 0.035);
+}
+
+.hero-status-dot {
+  box-shadow:
+    0 0 8px rgba(89, 220, 168, 0.9),
+    0 0 20px rgba(89, 220, 168, 0.45);
+}
+
+/* ---------------------------------------------------------
+   BUTTONS — YELLOW ACTION / PURPLE SECONDARY
+--------------------------------------------------------- */
+
+.primary-button {
+  border-color: rgba(255, 209, 42, 0.72) !important;
+  box-shadow:
+    0 0 12px rgba(255, 209, 42, 0.18),
+    0 0 34px rgba(255, 177, 0, 0.10),
+    inset 0 0 20px rgba(255, 255, 255, 0.04);
+}
+
+.primary-button:hover {
+  box-shadow:
+    0 0 18px rgba(255, 209, 42, 0.34),
+    0 0 52px rgba(255, 177, 0, 0.16),
+    inset 0 0 22px rgba(255, 255, 255, 0.07);
+  transform: translateY(-2px);
+}
+
+.secondary-button {
+  border-color: rgba(155, 77, 255, 0.30) !important;
+  box-shadow:
+    0 0 16px rgba(155, 77, 255, 0.08),
+    inset 0 0 24px rgba(155, 77, 255, 0.025);
+}
+
+.secondary-button:hover {
+  border-color: rgba(178, 108, 255, 0.62) !important;
+  box-shadow:
+    0 0 18px rgba(155, 77, 255, 0.22),
+    0 0 42px rgba(155, 77, 255, 0.09),
+    inset 0 0 28px rgba(155, 77, 255, 0.055);
+  transform: translateY(-2px);
+}
+
+/* ---------------------------------------------------------
+   PLATFORM WINDOW — REAL SCRAPER / TERMINAL FEEL
+--------------------------------------------------------- */
+
+.platform-window {
+  border-color: rgba(155, 77, 255, 0.19);
+  background: rgba(5, 4, 10, 0.88);
+  box-shadow:
+    0 35px 100px rgba(0, 0, 0, 0.58),
+    0 0 45px rgba(93, 40, 180, 0.055),
+    inset 0 0 70px rgba(91, 45, 160, 0.035);
+}
+
+.window-top {
+  background: linear-gradient(90deg, rgba(155, 77, 255, 0.055), rgba(155, 77, 255, 0.012));
+  border-bottom-color: rgba(174, 130, 255, 0.13);
+}
+
+.window-status {
+  color: #66e6a9;
+}
+
+.preview-badge,
+.yellow-text {
+  text-shadow: 0 0 9px rgba(255, 209, 42, 0.22);
+}
+
+.preview-box:hover,
+.feature-card:hover,
+.dashboard-card:hover {
+  border-color: rgba(174, 130, 255, 0.27);
+  box-shadow:
+    0 14px 48px rgba(0, 0, 0, 0.22),
+    0 0 24px rgba(124, 60, 220, 0.045),
+    inset 0 0 35px rgba(120, 70, 200, 0.035);
+}
+
+/* ---------------------------------------------------------
+   FEATURE CARDS
+--------------------------------------------------------- */
+
+.feature-card {
+  background:
+    linear-gradient(145deg, rgba(155, 77, 255, 0.028), transparent 58%),
+    rgba(7, 6, 12, 0.52);
+}
+
+.feature-number {
+  text-shadow: 0 0 10px rgba(155, 77, 255, 0.18);
+}
+
+/* ---------------------------------------------------------
+   DASHBOARD
+--------------------------------------------------------- */
+
+.dashboard {
+  background:
+    radial-gradient(circle at 72% 4%, rgba(124, 64, 215, 0.13), transparent 28%),
+    radial-gradient(circle at 15% 100%, rgba(44, 100, 175, 0.045), transparent 25%),
+    linear-gradient(135deg, #040309 0%, #090611 50%, #040309 100%);
+}
+
+.dashboard-sidebar {
+  background: rgba(4, 3, 8, 0.90);
+  border-right-color: rgba(155, 77, 255, 0.13);
+  box-shadow: 18px 0 70px rgba(0, 0, 0, 0.22);
+}
+
+.dashboard-brand span,
+.dashboard-brand strong {
+  color: var(--sn-silver) !important;
+  text-shadow:
+    0 0 5px rgba(155, 77, 255, 0.20),
+    0 0 12px rgba(155, 77, 255, 0.08) !important;
+}
+
+.dashboard-card {
+  border-color: rgba(155, 77, 255, 0.12);
+  background: linear-gradient(145deg, rgba(18, 14, 29, 0.78), rgba(5, 4, 10, 0.78));
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.20);
+}
+
+.url-control input:focus,
+.ai-card textarea:focus {
+  border-color: rgba(174, 130, 255, 0.42);
+  box-shadow:
+    0 0 0 3px rgba(155, 77, 255, 0.06),
+    0 0 28px rgba(155, 77, 255, 0.075);
+}
+
+.dashboard-nav.active {
+  background: linear-gradient(90deg, rgba(155, 77, 255, 0.13), rgba(155, 77, 255, 0.025));
+  border-color: rgba(155, 77, 255, 0.18);
+  box-shadow:
+    inset 2px 0 0 var(--sn-yellow),
+    0 0 20px rgba(155, 77, 255, 0.035);
+}
+
+@media (max-width: 750px) {
+  .landing-page::after {
+    inset: 8px;
+  }
+
+  .logo-field,
+  .logo-glass {
+    text-shadow:
+      0 0 1px rgba(230, 233, 250, 0.48),
+      0 0 5px rgba(166, 103, 255, 0.28),
+      0 0 12px rgba(123, 56, 235, 0.18) !important;
+  }
+}
+
+
+/* =========================================================
+   SCRAPENOVE — NEON GLOW FINISH
+   Replace/override only visual styling.
+   Existing glitch keyframes and effects remain untouched.
+========================================================= */
+
+:root {
+  --sn-bg: #030208;
+  --sn-purple-neon: #a855ff;
+  --sn-purple-hot: #d28aff;
+  --sn-cyan-neon: #35d9e8;
+  --sn-yellow-neon: #ffd21f;
+  --sn-logo-metal: #9698aa;
+}
+
+body {
+  background: var(--sn-bg);
+}
+
+.landing-page {
+  background:
+    radial-gradient(
+      ellipse at 50% 24%,
+      rgba(122, 45, 245, 0.24) 0%,
+      rgba(86, 28, 170, 0.10) 24%,
+      transparent 43%
+    ),
+    radial-gradient(
+      ellipse at 14% 55%,
+      rgba(34, 142, 190, 0.055),
+      transparent 28%
+    ),
+    radial-gradient(
+      ellipse at 87% 48%,
+      rgba(174, 48, 255, 0.095),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      #020208 0%,
+      #07030f 46%,
+      #030208 100%
+    );
+}
+
+/* Stronger purple atmosphere without making the page overly bright. */
+.ambient-one {
+  background: rgba(116, 40, 245, 0.19);
+  filter: blur(120px);
+}
+
+.ambient-two {
+  background: rgba(32, 102, 185, 0.065);
+  filter: blur(110px);
+}
+
+.ambient-three {
+  background: rgba(255, 173, 18, 0.045);
+  filter: blur(105px);
+}
+
+/* More visible cyber grid. */
+.cyber-grid {
+  opacity: 0.40;
+  background-image:
+    linear-gradient(rgba(160, 84, 255, 0.095) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(160, 84, 255, 0.095) 1px, transparent 1px),
+    linear-gradient(rgba(50, 215, 230, 0.018) 1px, transparent 1px);
+  background-size: 72px 72px, 72px 72px, 360px 360px;
+}
+
+/* =========================================================
+   SCRAPENOVE WORDMARK
+   Same dark-metal color on both halves + neon aura.
+========================================================= */
+
+.hero-logo {
+  filter:
+    drop-shadow(0 18px 42px rgba(0, 0, 0, 0.58))
+    drop-shadow(0 0 20px rgba(137, 57, 245, 0.20));
+}
+
+.logo-field,
+.logo-glass {
+  color: var(--sn-logo-metal) !important;
+
+  text-shadow:
+    0 0 1px rgba(238, 239, 255, 0.72),
+    0 0 4px rgba(209, 184, 255, 0.72),
+    0 0 9px rgba(173, 104, 255, 0.70),
+    0 0 19px rgba(145, 64, 255, 0.55),
+    0 0 38px rgba(113, 42, 225, 0.38),
+    0 0 70px rgba(78, 28, 170, 0.22) !important;
+}
+
+/* The original logo glitch pseudo-elements are NOT modified. */
+.hero-logo::after {
+  opacity: 1;
+  background:
+    radial-gradient(
+      ellipse at 50% 48%,
+      rgba(151, 55, 255, 0.30),
+      transparent 43%
+    ),
+    radial-gradient(
+      ellipse at 31% 54%,
+      rgba(42, 197, 224, 0.095),
+      transparent 34%
+    ),
+    radial-gradient(
+      ellipse at 70% 52%,
+      rgba(190, 52, 255, 0.13),
+      transparent 40%
+    );
+  filter: blur(42px);
+}
+
+/* A restrained cyan edge atmosphere balances the purple glow. */
+.logo-field {
+  text-shadow:
+    0 0 1px rgba(238, 239, 255, 0.72),
+    0 0 4px rgba(209, 184, 255, 0.72),
+    0 0 9px rgba(173, 104, 255, 0.70),
+    0 0 19px rgba(145, 64, 255, 0.55),
+    0 0 38px rgba(113, 42, 225, 0.38),
+    0 0 70px rgba(78, 28, 170, 0.22) !important;
+}
+
+.logo-glass {
+  text-shadow:
+    0 0 1px rgba(238, 239, 255, 0.72),
+    0 0 4px rgba(216, 194, 255, 0.76),
+    0 0 9px rgba(180, 112, 255, 0.74),
+    0 0 20px rgba(151, 63, 255, 0.58),
+    0 0 40px rgba(117, 42, 225, 0.40),
+    0 0 72px rgba(82, 28, 175, 0.24) !important;
+}
+
+/* =========================================================
+   PRIMARY SCRAPING ACTION — YELLOW NEON
+========================================================= */
+
+.primary-button {
+  border-color: rgba(255, 210, 31, 0.70) !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 210, 31, 0.98),
+      rgba(246, 177, 0, 0.96)
+    ) !important;
+  color: #08070a !important;
+  box-shadow:
+    0 0 8px rgba(255, 210, 31, 0.42),
+    0 0 24px rgba(255, 190, 0, 0.24),
+    0 0 52px rgba(255, 160, 0, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+
+.primary-button:hover {
+  box-shadow:
+    0 0 10px rgba(255, 210, 31, 0.65),
+    0 0 30px rgba(255, 190, 0, 0.38),
+    0 0 70px rgba(255, 160, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.48);
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   SECONDARY ACTION — PURPLE NEON
+========================================================= */
+
+.secondary-button {
+  border-color: rgba(168, 85, 255, 0.35) !important;
+  background: rgba(91, 38, 160, 0.055) !important;
+  color: #d9d1e6 !important;
+  box-shadow:
+    0 0 8px rgba(168, 85, 255, 0.10),
+    0 0 24px rgba(145, 64, 255, 0.06),
+    inset 0 0 20px rgba(145, 64, 255, 0.025);
+}
+
+.secondary-button:hover {
+  border-color: rgba(184, 111, 255, 0.65) !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 0 9px rgba(168, 85, 255, 0.35),
+    0 0 28px rgba(145, 64, 255, 0.20),
+    inset 0 0 25px rgba(145, 64, 255, 0.06);
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   STATUS HUD
+========================================================= */
+
+.hero-status {
+  border-color: rgba(168, 85, 255, 0.28) !important;
+  background: rgba(113, 43, 210, 0.055) !important;
+  box-shadow:
+    0 0 12px rgba(168, 85, 255, 0.10),
+    0 0 28px rgba(120, 45, 230, 0.06),
+    inset 0 0 22px rgba(168, 85, 255, 0.035);
+}
+
+.hero-status-dot {
+  box-shadow:
+    0 0 7px rgba(89, 220, 168, 0.95),
+    0 0 17px rgba(89, 220, 168, 0.55),
+    0 0 30px rgba(89, 220, 168, 0.18);
+}
+
+/* =========================================================
+   PLATFORM WINDOW
+========================================================= */
+
+.platform-window {
+  background: rgba(4, 3, 9, 0.86) !important;
+  border-color: rgba(168, 85, 255, 0.20) !important;
+  box-shadow:
+    0 35px 110px rgba(0, 0, 0, 0.58),
+    0 0 35px rgba(126, 47, 230, 0.07),
+    inset 0 0 70px rgba(126, 47, 230, 0.025);
+}
+
+.window-top {
+  border-bottom-color: rgba(168, 85, 255, 0.14) !important;
+  background: rgba(116, 53, 208, 0.045) !important;
+}
+
+/* =========================================================
+   RESPONSIVE GLOW CONTROL
+========================================================= */
+
+@media (max-width: 750px) {
+  .hero-logo {
+    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.52));
+  }
+
+  .logo-field,
+  .logo-glass {
+    text-shadow:
+      0 0 1px rgba(238, 239, 255, 0.68),
+      0 0 4px rgba(209, 184, 255, 0.60),
+      0 0 10px rgba(173, 104, 255, 0.55),
+      0 0 22px rgba(145, 64, 255, 0.38),
+      0 0 42px rgba(113, 42, 225, 0.20) !important;
+  }
 }

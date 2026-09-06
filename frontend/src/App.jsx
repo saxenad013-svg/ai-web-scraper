@@ -24,8 +24,8 @@ function LandingPage({ onStart }) {
       <nav className="landing-nav">
 
         <div className="nav-brand">
-          <span className="nav-field">FIELD</span>
-          <span className="nav-glass">GLASS</span>
+          <span className="nav-field">SCRAPE</span>
+          <span className="nav-glass">NOVE</span>
         </div>
 
         <div className="nav-links">
@@ -60,22 +60,25 @@ function LandingPage({ onStart }) {
 
           <span className="hero-status-dot"></span>
 
-          AI SCRAPER ONLINE
+          SCRAPER ONLINE
 
         </div>
 
 
-        <h1 className="hero-logo">
+        <h1
+          className="hero-logo"
+          data-text="SCRAPENOVE"
+        >
 
           <span className="logo-field">
-            Field
+            SCRAPE
           </span>
 
           <span
             className="logo-glass"
-            data-text="glass"
+            data-text="NOVE"
           >
-            glass
+            NOVE
           </span>
 
         </h1>
@@ -144,7 +147,7 @@ function LandingPage({ onStart }) {
             </div>
 
             <div className="window-title">
-              FIELDGLASS / SCRAPER
+              SCRAPENOVE / EXTRACTOR
             </div>
 
             <div className="window-status">
@@ -170,11 +173,11 @@ function LandingPage({ onStart }) {
               <div className="sidebar-brand">
 
                 <span>
-                  FIELD
+                  SCRAPE
                 </span>
 
                 <strong>
-                  GLASS
+                  NOVE
                 </strong>
 
               </div>
@@ -258,7 +261,7 @@ function LandingPage({ onStart }) {
                 </div>
 
                 <span className="preview-badge">
-                  AI ENABLED
+                  SMART EXTRACTION
                 </span>
 
               </div>
@@ -335,7 +338,7 @@ function LandingPage({ onStart }) {
                   <div className="preview-box-header">
 
                     <span>
-                      AI EXTRACTION
+                      SMART EXTRACTION
                     </span>
 
                     <span className="yellow-text">
@@ -435,7 +438,7 @@ function LandingPage({ onStart }) {
             </span>
 
             <h3>
-              AI Extraction
+              Smart Extraction
             </h3>
 
             <p>
@@ -476,11 +479,11 @@ function LandingPage({ onStart }) {
       <footer className="landing-footer">
 
         <div>
-          FIELDGLASS
+          SCRAPENOVE
         </div>
 
         <div className="footer-mono">
-          AI-POWERED WEB DATA EXTRACTION
+          WEB DATA EXTRACTION
         </div>
 
       </footer>
@@ -1099,11 +1102,11 @@ function DashboardPage({ onBack }) {
         >
 
           <span>
-            Field
+            SCRAPE
           </span>
 
-          <strong data-text="glass">
-            glass
+          <strong data-text="NOVE">
+            NOVE
           </strong>
 
         </button>
@@ -1165,7 +1168,7 @@ function DashboardPage({ onBack }) {
 
           <span></span>
 
-          AI SCRAPER ONLINE
+          SCRAPER ONLINE
 
         </div>
 
@@ -1187,7 +1190,7 @@ function DashboardPage({ onBack }) {
           <div>
 
             <div className="dashboard-eyebrow">
-              FIELDGLASS / SCRAPER
+              SCRAPENOVE / EXTRACTOR
             </div>
 
             <h1>
@@ -1352,7 +1355,7 @@ function DashboardPage({ onBack }) {
 
 
           {/* =================================================
-              AI EXTRACTION
+              SMART EXTRACTION
           ================================================= */}
 
           <section className="dashboard-card ai-card">
@@ -1366,7 +1369,7 @@ function DashboardPage({ onBack }) {
                 </span>
 
                 <h2>
-                  AI Extraction
+                  Smart Extraction
                 </h2>
 
               </div>
@@ -1401,7 +1404,7 @@ function DashboardPage({ onBack }) {
 
               {analyzing
                 ? "ANALYZING..."
-                : "RUN AI EXTRACTION →"}
+                : "RUN SMART EXTRACTION →"}
 
             </button>
 
