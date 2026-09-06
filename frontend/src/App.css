@@ -4524,3 +4524,252 @@ body {
     font-size: 12px;
   }
 }
+
+
+/* =========================================================
+   SCRAPENOVE — FINAL MOBILE SCALE TUNING
+   Keeps desktop design unchanged.
+   Targets Android phones where the previous mobile pass
+   still felt too large / spacious.
+   ========================================================= */
+
+@media (max-width: 750px) {
+  .landing-nav {
+    width: calc(100% - 28px);
+    height: 64px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .nav-brand {
+    font-size: 11px;
+    letter-spacing: 1.15px;
+  }
+
+  .nav-launch {
+    font-size: 10px;
+  }
+
+  .nav-launch span {
+    font-size: 13px;
+  }
+
+  .hero {
+    width: calc(100% - 28px);
+    min-height: 455px;
+    padding-top: 8px;
+  }
+
+  .hero-status {
+    margin-bottom: 20px;
+    padding: 6px 9px;
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+
+  .hero-status-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .hero-logo {
+    font-size: clamp(40px, 12.5vw, 58px);
+    letter-spacing: -1.8px;
+    transform: skewX(-1deg) scaleX(0.94);
+    filter:
+      drop-shadow(0 8px 20px rgba(0, 0, 0, 0.58))
+      drop-shadow(0 0 12px rgba(126, 52, 235, 0.13));
+  }
+
+  .logo-field,
+  .logo-glass {
+    text-shadow:
+      0 0 1px rgba(238, 239, 255, 0.55),
+      0 0 3px rgba(205, 173, 255, 0.42),
+      0 0 7px rgba(168, 85, 255, 0.34),
+      0 0 14px rgba(133, 53, 235, 0.22) !important;
+  }
+
+  .hero-logo::after {
+    filter: blur(24px);
+    opacity: 0.62;
+  }
+
+  .hero-description {
+    max-width: 430px;
+    margin-top: 23px;
+    padding: 0 8px;
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .hero-actions {
+    width: 100%;
+    max-width: 270px;
+    gap: 9px;
+    margin-top: 21px;
+  }
+
+  /* Important: the base buttons have a fixed 62px height.
+     Explicitly override that on phones. */
+  .primary-button,
+  .secondary-button {
+    width: 100%;
+    height: 48px !important;
+    min-height: 48px !important;
+    padding: 0 18px !important;
+    border-radius: 8px;
+    font-size: 12px;
+  }
+
+  .primary-button {
+    box-shadow:
+      0 0 8px rgba(255, 209, 42, 0.18),
+      0 0 18px rgba(255, 177, 0, 0.07);
+  }
+
+  .secondary-button {
+    box-shadow:
+      0 0 8px rgba(168, 85, 255, 0.08),
+      inset 0 0 14px rgba(168, 85, 255, 0.025);
+  }
+
+  .platform-section,
+  .features-section,
+  .landing-footer {
+    width: calc(100% - 28px);
+  }
+
+  .platform-window {
+    border-radius: 8px;
+  }
+
+  .window-top {
+    min-height: 42px;
+    padding: 0 10px;
+  }
+
+  .window-title,
+  .window-status {
+    font-size: 7px;
+  }
+
+  .platform-main {
+    padding: 13px;
+  }
+
+  .preview-heading h3 {
+    font-size: 15px;
+  }
+
+  .preview-heading p {
+    font-size: 10px;
+  }
+
+  .feature-card {
+    padding: 17px;
+  }
+}
+
+@media (max-width: 500px) {
+  .landing-nav {
+    width: calc(100% - 24px);
+    height: 58px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .nav-brand {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .nav-launch {
+    font-size: 9px;
+  }
+
+  .nav-launch span {
+    font-size: 12px;
+  }
+
+  .hero {
+    width: calc(100% - 24px);
+    min-height: 425px;
+    padding-top: 5px;
+  }
+
+  .hero-status {
+    margin-bottom: 17px;
+    padding: 5px 8px;
+    font-size: 7px;
+    letter-spacing: 1.6px;
+  }
+
+  .hero-logo {
+    font-size: clamp(37px, 12vw, 52px);
+    letter-spacing: -1.5px;
+  }
+
+  .hero-description {
+    margin-top: 20px;
+    font-size: 11.5px;
+    line-height: 1.5;
+  }
+
+  .hero-actions {
+    max-width: 255px;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .primary-button,
+  .secondary-button {
+    height: 45px !important;
+    min-height: 45px !important;
+    font-size: 11.5px;
+  }
+
+  .section-label {
+    font-size: 8px;
+    letter-spacing: 1.7px;
+  }
+
+  .platform-main {
+    padding: 11px;
+  }
+
+  .preview-heading {
+    gap: 9px;
+  }
+
+  .preview-heading h3 {
+    font-size: 14px;
+  }
+
+  .preview-heading p {
+    font-size: 9px;
+  }
+
+  .preview-badge {
+    font-size: 6px;
+    padding: 4px 6px;
+  }
+}
+
+@media (max-width: 360px) {
+  .nav-launch {
+    display: none;
+  }
+
+  .hero-logo {
+    font-size: 35px;
+  }
+
+  .hero-description {
+    font-size: 11px;
+  }
+
+  .hero-actions {
+    max-width: 240px;
+  }
+}
