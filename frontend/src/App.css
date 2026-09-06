@@ -6153,69 +6153,55 @@ select {
     padding: 15px 9px 26px !important;
   }
 }
+
+
 /* =========================================================
-   SCRAPENOVE — SESSION RESTORE UI
-   Android / Mobile + Desktop
+   SCRAPENOVE — FINAL ANDROID HAMBURGER + SESSION RESTORE
+   Desktop remains unchanged.
 ========================================================= */
 
+.dashboard-desktop-nav {
+  display: block;
+}
+
+.mobile-menu-button,
+.mobile-workspace-menu {
+  display: none;
+}
+
+/* SESSION RESTORE — desktop */
 .session-restore-overlay {
   position: fixed;
   inset: 0;
-  z-index: 9999;
-
+  z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
-
   padding: 20px;
-
   background:
-    radial-gradient(
-      circle at 50% 30%,
-      rgba(155, 77, 255, 0.12),
-      transparent 35%
-    ),
-    rgba(3, 2, 8, 0.88);
-
+    radial-gradient(circle at 50% 30%, rgba(155,77,255,.12), transparent 35%),
+    rgba(3,2,8,.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-
   isolation: isolate;
 }
 
 .session-restore-modal {
   position: relative;
   z-index: 1;
-
   width: min(560px, 100%);
   max-height: calc(100vh - 40px);
   max-height: calc(100dvh - 40px);
-
   overflow: auto;
-
   padding: 28px;
-
-  border: 1px solid rgba(155, 77, 255, 0.30);
+  border: 1px solid rgba(155,77,255,.30);
   border-radius: 14px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(18, 13, 29, 0.98),
-      rgba(7, 5, 12, 0.98)
-    );
-
-  box-shadow:
-    0 30px 90px rgba(0, 0, 0, 0.65),
-    0 0 50px rgba(155, 77, 255, 0.12),
-    inset 0 0 40px rgba(155, 77, 255, 0.025);
-
+  background: linear-gradient(145deg, rgba(18,13,29,.98), rgba(7,5,12,.98));
+  box-shadow: 0 30px 90px rgba(0,0,0,.65), 0 0 50px rgba(155,77,255,.12), inset 0 0 40px rgba(155,77,255,.025);
   color: #f5f2fa;
-
   -webkit-overflow-scrolling: touch;
 }
 
@@ -6223,89 +6209,57 @@ select {
   content: "";
   position: absolute;
   inset: 0;
-
   pointer-events: none;
-
   border-radius: inherit;
-
-  background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(255,255,255,0.018) 0px,
-      rgba(255,255,255,0.018) 1px,
-      transparent 1px,
-      transparent 4px
-    );
-
-  opacity: 0.5;
+  background: repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0px, rgba(255,255,255,.018) 1px, transparent 1px, transparent 4px);
+  opacity: .5;
 }
 
 .session-restore-kicker {
   position: relative;
-
   margin-bottom: 14px;
-
   color: #ffd21f;
-
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--mono, "JetBrains Mono", monospace);
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.20em;
+  letter-spacing: .20em;
   line-height: 1.2;
-
   text-transform: uppercase;
 }
 
 .session-restore-icon {
   position: relative;
-
   width: 42px;
   height: 42px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   margin-bottom: 16px;
-
-  border: 1px solid rgba(155, 77, 255, 0.28);
+  border: 1px solid rgba(155,77,255,.28);
   border-radius: 9px;
-
-  background: rgba(155, 77, 255, 0.07);
-
+  background: rgba(155,77,255,.07);
   color: #c996ff;
-
   font-size: 22px;
-
-  box-shadow:
-    0 0 20px rgba(155, 77, 255, 0.10),
-    inset 0 0 16px rgba(155, 77, 255, 0.04);
+  box-shadow: 0 0 20px rgba(155,77,255,.10), inset 0 0 16px rgba(155,77,255,.04);
 }
 
 .session-restore-modal h2 {
   position: relative;
-
   margin: 0 0 10px;
-
   color: #f5f2fa;
-
-  font-family: "Oxanium", sans-serif;
+  font-family: var(--script, "Oxanium", sans-serif);
   font-size: clamp(23px, 5vw, 32px);
   font-weight: 700;
   line-height: 1.12;
-  letter-spacing: -0.02em;
+  letter-spacing: -.02em;
 }
 
 .session-restore-modal p {
   position: relative;
-
   margin: 0;
-
   max-width: 500px;
-
   color: #a7a1b1;
-
-  font-family: "Inter", sans-serif;
+  font-family: var(--sans, "Inter", sans-serif);
   font-size: 13px;
   font-weight: 500;
   line-height: 1.7;
@@ -6313,255 +6267,281 @@ select {
 
 .session-restore-meta {
   position: relative;
-
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-
   margin-top: 20px;
   padding: 12px;
-
-  border: 1px solid rgba(174, 130, 255, 0.13);
+  border: 1px solid rgba(174,130,255,.13);
   border-radius: 7px;
-
-  background: rgba(155, 77, 255, 0.035);
+  background: rgba(155,77,255,.035);
 }
 
 .session-restore-meta span {
   display: inline-flex;
   align-items: center;
-
   min-height: 27px;
   padding: 6px 9px;
-
-  border: 1px solid rgba(255, 201, 40, 0.14);
+  border: 1px solid rgba(255,201,40,.14);
   border-radius: 5px;
-
-  background: rgba(255, 201, 40, 0.025);
-
+  background: rgba(255,201,40,.025);
   color: #aaa4b1;
-
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--mono, "JetBrains Mono", monospace);
   font-size: 8px;
   font-weight: 600;
-  letter-spacing: 0.08em;
-
+  letter-spacing: .08em;
   white-space: nowrap;
 }
 
 .session-restore-actions {
   position: relative;
-
   display: grid;
   grid-template-columns: 1fr 1fr;
-
   gap: 10px;
-
   margin-top: 22px;
 }
 
 .session-restore-actions button {
-  appearance: none;
-  -webkit-appearance: none;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-  min-height: 48px;
-
-  margin: 0;
-  padding: 0 15px;
-
-  border-radius: 7px;
-
-  font-family: "JetBrains Mono", monospace;
-  font-size: 9px;
-  font-weight: 700;
-  line-height: 1;
-
-  letter-spacing: 0.10em;
-
-  text-transform: uppercase;
-
-  cursor: pointer;
-
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  min-height: 48px !important;
+  margin: 0 !important;
+  padding: 0 15px !important;
+  border-radius: 7px !important;
+  font-family: var(--mono, "JetBrains Mono", monospace) !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  letter-spacing: .10em !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
   -webkit-tap-highlight-color: transparent;
-
-  transition:
-    transform 0.18s ease,
-    border-color 0.18s ease,
-    background 0.18s ease,
-    box-shadow 0.18s ease;
-}
-
-.session-restore-actions button:active {
-  transform: scale(0.98);
 }
 
 .session-restore-primary {
-  border: 1px solid rgba(255, 210, 31, 0.55) !important;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255, 210, 31, 0.13),
-      rgba(255, 159, 0, 0.055)
-    ) !important;
-
+  border: 1px solid rgba(255,210,31,.55) !important;
+  background: linear-gradient(135deg, rgba(255,210,31,.13), rgba(255,159,0,.055)) !important;
   color: #ffd21f !important;
+  box-shadow: 0 0 22px rgba(255,201,40,.07), inset 0 0 18px rgba(255,201,40,.025) !important;
+}
 
-  box-shadow:
-    0 0 22px rgba(255, 201, 40, 0.07),
-    inset 0 0 18px rgba(255, 201, 40, 0.025);
+.session-restore-secondary {
+  border: 1px solid rgba(174,130,255,.22) !important;
+  background: rgba(255,255,255,.025) !important;
+  color: #b7b0c0 !important;
+  box-shadow: inset 0 0 18px rgba(155,77,255,.025) !important;
 }
 
 .session-restore-primary:hover {
   border-color: #ffd21f !important;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255, 210, 31, 0.18),
-      rgba(255, 159, 0, 0.08)
-    ) !important;
-
-  box-shadow:
-    0 0 28px rgba(255, 201, 40, 0.15),
-    inset 0 0 18px rgba(255, 201, 40, 0.04);
-}
-
-.session-restore-secondary {
-  border: 1px solid rgba(174, 130, 255, 0.22) !important;
-
-  background:
-    rgba(255, 255, 255, 0.025) !important;
-
-  color: #b7b0c0 !important;
-
-  box-shadow:
-    inset 0 0 18px rgba(155, 77, 255, 0.025);
+  background: linear-gradient(135deg, rgba(255,210,31,.18), rgba(255,159,0,.08)) !important;
+  box-shadow: 0 0 28px rgba(255,201,40,.15), inset 0 0 18px rgba(255,201,40,.04) !important;
 }
 
 .session-restore-secondary:hover {
-  border-color: rgba(174, 130, 255, 0.42) !important;
-
-  background:
-    rgba(155, 77, 255, 0.07) !important;
-
+  border-color: rgba(174,130,255,.42) !important;
+  background: rgba(155,77,255,.07) !important;
   color: #f2eff8 !important;
-
-  box-shadow:
-    0 0 22px rgba(155, 77, 255, 0.09);
 }
 
-/* =========================================================
-   ANDROID / MOBILE
-========================================================= */
+/* ANDROID / MOBILE */
+@media (max-width: 750px) {
+  .dashboard-sidebar {
+    display: grid !important;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand menu"
+      "navmenu navmenu";
+    align-items: center !important;
+    width: 100% !important;
+    min-height: auto !important;
+    padding: 10px 12px 9px !important;
+    gap: 8px !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid rgba(174,130,255,.14) !important;
+    background: rgba(5,4,9,.96) !important;
+  }
 
-@media (max-width: 700px) {
+  .dashboard-brand {
+    grid-area: brand;
+    width: auto !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 2px 4px 4px !important;
+    font-size: 21px !important;
+    line-height: 1 !important;
+  }
+
+  .dashboard-section-label,
+  .dashboard-status,
+  .dashboard-spacer,
+  .dashboard-desktop-nav {
+    display: none !important;
+  }
+
+  .mobile-menu-button {
+    grid-area: menu;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 44px !important;
+    height: 40px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 1px solid rgba(174,130,255,.24) !important;
+    border-radius: 7px !important;
+    background: rgba(155,77,255,.05) !important;
+    cursor: pointer !important;
+  }
+
+  .mobile-menu-button span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    margin: 2.5px 0;
+    border-radius: 2px;
+    background: #ddd8e5;
+    transition: transform .18s ease, opacity .18s ease;
+  }
+
+  .mobile-menu-button[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .mobile-menu-button[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-button[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .mobile-workspace-menu {
+    grid-area: navmenu;
+    display: flex !important;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 !important;
+    padding: 6px !important;
+    border: 1px solid rgba(174,130,255,.17);
+    border-radius: 9px;
+    background: linear-gradient(180deg, rgba(16,11,25,.99), rgba(6,5,10,.99));
+    box-shadow: 0 18px 45px rgba(0,0,0,.45), inset 0 0 25px rgba(155,77,255,.025);
+  }
+
+  .mobile-workspace-item {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    min-height: 44px !important;
+    margin: 0 !important;
+    padding: 0 12px !important;
+    border: 1px solid transparent !important;
+    border-radius: 6px !important;
+    background: transparent !important;
+    color: #918b9a !important;
+    font-family: var(--mono, "JetBrains Mono", monospace) !important;
+    font-size: 9px !important;
+    font-weight: 600 !important;
+    text-align: left !important;
+    cursor: pointer !important;
+  }
+
+  .mobile-workspace-item + .mobile-workspace-item {
+    margin-top: 3px !important;
+  }
+
+  .mobile-workspace-item > span {
+    width: 24px;
+    color: #777080;
+    font-size: 10px;
+  }
+
+  .mobile-workspace-item strong {
+    font-weight: 600;
+  }
+
+  .mobile-workspace-item b {
+    margin-left: auto;
+    min-width: 20px;
+    padding: 3px 6px;
+    border-radius: 10px;
+    background: rgba(255,201,40,.07);
+    color: var(--yellow, #ffd12a);
+    font-size: 8px;
+    text-align: center;
+  }
+
+  .mobile-workspace-item.active {
+    color: #f4f1f8 !important;
+    background: linear-gradient(90deg, rgba(155,77,255,.11), rgba(155,77,255,.025)) !important;
+    border-color: rgba(155,77,255,.16) !important;
+    box-shadow: inset 2px 0 0 var(--yellow, #ffd12a) !important;
+  }
+
+  .mobile-workspace-item.active > span {
+    color: var(--yellow, #ffd12a);
+  }
+
+  .dashboard-main {
+    padding: 17px 12px 30px !important;
+  }
 
   .session-restore-overlay {
     align-items: flex-end;
-
     padding: 0;
   }
 
   .session-restore-modal {
     width: 100%;
-
     max-height: 92vh;
     max-height: 92dvh;
-
-    padding:
-      22px
-      18px
-      calc(22px + env(safe-area-inset-bottom));
-
+    padding: 22px 18px calc(22px + env(safe-area-inset-bottom));
     border-radius: 16px 16px 0 0;
-
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-
-    box-shadow:
-      0 -20px 60px rgba(0, 0, 0, 0.65),
-      0 0 40px rgba(155, 77, 255, 0.12),
-      inset 0 1px 0 rgba(255,255,255,0.04);
-  }
-
-  .session-restore-kicker {
-    font-size: 9px;
-    letter-spacing: 0.16em;
-  }
-
-  .session-restore-icon {
-    width: 38px;
-    height: 38px;
-
-    margin-bottom: 13px;
-
-    font-size: 20px;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
   }
 
   .session-restore-modal h2 {
     font-size: 24px;
-    line-height: 1.15;
   }
 
   .session-restore-modal p {
     font-size: 12px;
-    line-height: 1.65;
-  }
-
-  .session-restore-meta {
-    gap: 6px;
-
-    margin-top: 16px;
-    padding: 10px;
-  }
-
-  .session-restore-meta span {
-    font-size: 7px;
   }
 
   .session-restore-actions {
     grid-template-columns: 1fr;
-
     gap: 8px;
-
-    margin-top: 18px;
   }
 
   .session-restore-actions button {
-    min-height: 50px;
-
-    font-size: 9px;
+    min-height: 50px !important;
+    font-size: 9px !important;
   }
 }
 
-/* =========================================================
-   SMALL ANDROID PHONES
-========================================================= */
-
 @media (max-width: 380px) {
+  .dashboard-brand {
+    font-size: 20px !important;
+  }
 
-  .session-restore-modal {
-    padding-left: 15px;
-    padding-right: 15px;
+  .mobile-menu-button {
+    width: 42px !important;
+    height: 38px !important;
   }
 
   .session-restore-modal h2 {
     font-size: 21px;
-  }
-
-  .session-restore-modal p {
-    font-size: 11px;
-  }
-
-  .session-restore-actions button {
-    min-height: 48px;
-    font-size: 8px;
   }
 }
