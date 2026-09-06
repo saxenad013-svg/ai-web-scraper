@@ -6153,3 +6153,415 @@ select {
     padding: 15px 9px 26px !important;
   }
 }
+/* =========================================================
+   SCRAPENOVE — SESSION RESTORE UI
+   Android / Mobile + Desktop
+========================================================= */
+
+.session-restore-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  padding: 20px;
+
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(155, 77, 255, 0.12),
+      transparent 35%
+    ),
+    rgba(3, 2, 8, 0.88);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  isolation: isolate;
+}
+
+.session-restore-modal {
+  position: relative;
+  z-index: 1;
+
+  width: min(560px, 100%);
+  max-height: calc(100vh - 40px);
+  max-height: calc(100dvh - 40px);
+
+  overflow: auto;
+
+  padding: 28px;
+
+  border: 1px solid rgba(155, 77, 255, 0.30);
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18, 13, 29, 0.98),
+      rgba(7, 5, 12, 0.98)
+    );
+
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.65),
+    0 0 50px rgba(155, 77, 255, 0.12),
+    inset 0 0 40px rgba(155, 77, 255, 0.025);
+
+  color: #f5f2fa;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+.session-restore-modal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  border-radius: inherit;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.018) 0px,
+      rgba(255,255,255,0.018) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+
+  opacity: 0.5;
+}
+
+.session-restore-kicker {
+  position: relative;
+
+  margin-bottom: 14px;
+
+  color: #ffd21f;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.20em;
+  line-height: 1.2;
+
+  text-transform: uppercase;
+}
+
+.session-restore-icon {
+  position: relative;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 16px;
+
+  border: 1px solid rgba(155, 77, 255, 0.28);
+  border-radius: 9px;
+
+  background: rgba(155, 77, 255, 0.07);
+
+  color: #c996ff;
+
+  font-size: 22px;
+
+  box-shadow:
+    0 0 20px rgba(155, 77, 255, 0.10),
+    inset 0 0 16px rgba(155, 77, 255, 0.04);
+}
+
+.session-restore-modal h2 {
+  position: relative;
+
+  margin: 0 0 10px;
+
+  color: #f5f2fa;
+
+  font-family: "Oxanium", sans-serif;
+  font-size: clamp(23px, 5vw, 32px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+
+.session-restore-modal p {
+  position: relative;
+
+  margin: 0;
+
+  max-width: 500px;
+
+  color: #a7a1b1;
+
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.session-restore-meta {
+  position: relative;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin-top: 20px;
+  padding: 12px;
+
+  border: 1px solid rgba(174, 130, 255, 0.13);
+  border-radius: 7px;
+
+  background: rgba(155, 77, 255, 0.035);
+}
+
+.session-restore-meta span {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 27px;
+  padding: 6px 9px;
+
+  border: 1px solid rgba(255, 201, 40, 0.14);
+  border-radius: 5px;
+
+  background: rgba(255, 201, 40, 0.025);
+
+  color: #aaa4b1;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+
+  white-space: nowrap;
+}
+
+.session-restore-actions {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 10px;
+
+  margin-top: 22px;
+}
+
+.session-restore-actions button {
+  appearance: none;
+  -webkit-appearance: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 48px;
+
+  margin: 0;
+  padding: 0 15px;
+
+  border-radius: 7px;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+
+  letter-spacing: 0.10em;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  -webkit-tap-highlight-color: transparent;
+
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.session-restore-actions button:active {
+  transform: scale(0.98);
+}
+
+.session-restore-primary {
+  border: 1px solid rgba(255, 210, 31, 0.55) !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 210, 31, 0.13),
+      rgba(255, 159, 0, 0.055)
+    ) !important;
+
+  color: #ffd21f !important;
+
+  box-shadow:
+    0 0 22px rgba(255, 201, 40, 0.07),
+    inset 0 0 18px rgba(255, 201, 40, 0.025);
+}
+
+.session-restore-primary:hover {
+  border-color: #ffd21f !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 210, 31, 0.18),
+      rgba(255, 159, 0, 0.08)
+    ) !important;
+
+  box-shadow:
+    0 0 28px rgba(255, 201, 40, 0.15),
+    inset 0 0 18px rgba(255, 201, 40, 0.04);
+}
+
+.session-restore-secondary {
+  border: 1px solid rgba(174, 130, 255, 0.22) !important;
+
+  background:
+    rgba(255, 255, 255, 0.025) !important;
+
+  color: #b7b0c0 !important;
+
+  box-shadow:
+    inset 0 0 18px rgba(155, 77, 255, 0.025);
+}
+
+.session-restore-secondary:hover {
+  border-color: rgba(174, 130, 255, 0.42) !important;
+
+  background:
+    rgba(155, 77, 255, 0.07) !important;
+
+  color: #f2eff8 !important;
+
+  box-shadow:
+    0 0 22px rgba(155, 77, 255, 0.09);
+}
+
+/* =========================================================
+   ANDROID / MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .session-restore-overlay {
+    align-items: flex-end;
+
+    padding: 0;
+  }
+
+  .session-restore-modal {
+    width: 100%;
+
+    max-height: 92vh;
+    max-height: 92dvh;
+
+    padding:
+      22px
+      18px
+      calc(22px + env(safe-area-inset-bottom));
+
+    border-radius: 16px 16px 0 0;
+
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+
+    box-shadow:
+      0 -20px 60px rgba(0, 0, 0, 0.65),
+      0 0 40px rgba(155, 77, 255, 0.12),
+      inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+
+  .session-restore-kicker {
+    font-size: 9px;
+    letter-spacing: 0.16em;
+  }
+
+  .session-restore-icon {
+    width: 38px;
+    height: 38px;
+
+    margin-bottom: 13px;
+
+    font-size: 20px;
+  }
+
+  .session-restore-modal h2 {
+    font-size: 24px;
+    line-height: 1.15;
+  }
+
+  .session-restore-modal p {
+    font-size: 12px;
+    line-height: 1.65;
+  }
+
+  .session-restore-meta {
+    gap: 6px;
+
+    margin-top: 16px;
+    padding: 10px;
+  }
+
+  .session-restore-meta span {
+    font-size: 7px;
+  }
+
+  .session-restore-actions {
+    grid-template-columns: 1fr;
+
+    gap: 8px;
+
+    margin-top: 18px;
+  }
+
+  .session-restore-actions button {
+    min-height: 50px;
+
+    font-size: 9px;
+  }
+}
+
+/* =========================================================
+   SMALL ANDROID PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .session-restore-modal {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .session-restore-modal h2 {
+    font-size: 21px;
+  }
+
+  .session-restore-modal p {
+    font-size: 11px;
+  }
+
+  .session-restore-actions button {
+    min-height: 48px;
+    font-size: 8px;
+  }
+}
