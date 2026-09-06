@@ -4219,3 +4219,308 @@ body {
       0 0 42px rgba(113, 42, 225, 0.20) !important;
   }
 }
+
+
+/* =========================================================
+   SCRAPENOVE — FINAL MOBILE / ANDROID NEON TUNING
+   Visual-only layer. Existing glitch animations and API/
+   application functionality are intentionally untouched.
+========================================================= */
+
+@media (max-width: 750px) {
+  .landing-page {
+    min-height: 100svh;
+    background:
+      radial-gradient(ellipse at 50% 18%, rgba(126, 47, 245, 0.22), transparent 34%),
+      radial-gradient(ellipse at 8% 62%, rgba(42, 155, 205, 0.045), transparent 28%),
+      linear-gradient(180deg, #030208 0%, #08040f 52%, #030208 100%);
+  }
+
+  .cyber-grid {
+    opacity: 0.22;
+    background-size: 54px 54px, 54px 54px, 270px 270px;
+  }
+
+  .ambient-one {
+    width: 430px;
+    height: 430px;
+    top: 70px;
+    filter: blur(95px);
+    opacity: 0.78;
+  }
+
+  .ambient-two,
+  .ambient-three {
+    filter: blur(75px);
+  }
+
+  .landing-nav {
+    width: calc(100% - 24px);
+    height: 78px;
+  }
+
+  .nav-brand {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    gap: 5px;
+  }
+
+  .nav-field,
+  .nav-glass {
+    text-shadow:
+      0 0 3px rgba(168, 85, 255, 0.28),
+      0 0 10px rgba(168, 85, 255, 0.12) !important;
+  }
+
+  .nav-launch {
+    font-size: 12px;
+  }
+
+  .nav-launch span {
+    font-size: 16px;
+  }
+
+  .hero {
+    width: calc(100% - 24px);
+    min-height: 570px;
+    padding-top: 18px;
+  }
+
+  .hero-status {
+    gap: 8px;
+    margin-bottom: 28px;
+    padding: 7px 10px;
+    font-size: 9px;
+    letter-spacing: 2.4px;
+  }
+
+  .hero-status-dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .hero-logo {
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(48px, 15.5vw, 82px);
+    letter-spacing: -2.5px;
+    transform: skewX(-1deg) scaleX(0.96);
+    filter:
+      drop-shadow(0 12px 28px rgba(0, 0, 0, 0.62))
+      drop-shadow(0 0 18px rgba(126, 52, 235, 0.16));
+  }
+
+  .hero-logo::after {
+    left: 4%;
+    right: 4%;
+    top: 10%;
+    bottom: -20%;
+    filter: blur(32px);
+    opacity: 0.85;
+  }
+
+  .logo-field,
+  .logo-glass {
+    color: var(--sn-logo-metal, #9698aa) !important;
+    text-shadow:
+      0 0 1px rgba(238, 239, 255, 0.62),
+      0 0 4px rgba(205, 173, 255, 0.54),
+      0 0 9px rgba(168, 85, 255, 0.48),
+      0 0 20px rgba(133, 53, 235, 0.34),
+      0 0 38px rgba(103, 39, 190, 0.20) !important;
+  }
+
+  .hero-description {
+    max-width: 500px;
+    margin-top: 34px;
+    padding: 0 5px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    gap: 11px;
+    margin-top: 30px;
+    max-width: 315px;
+  }
+
+  .primary-button,
+  .secondary-button {
+    min-height: 54px;
+    border-radius: 9px;
+  }
+
+  .primary-button {
+    box-shadow:
+      0 0 10px rgba(255, 209, 42, 0.22),
+      0 0 28px rgba(255, 177, 0, 0.10),
+      inset 0 0 18px rgba(255, 255, 255, 0.04);
+  }
+
+  .secondary-button {
+    box-shadow:
+      0 0 12px rgba(168, 85, 255, 0.12),
+      inset 0 0 20px rgba(168, 85, 255, 0.035);
+  }
+
+  .platform-section,
+  .features-section,
+  .landing-footer {
+    width: calc(100% - 24px);
+  }
+
+  .platform-window {
+    border-radius: 10px;
+    box-shadow:
+      0 24px 70px rgba(0, 0, 0, 0.60),
+      0 0 30px rgba(126, 47, 230, 0.07),
+      inset 0 0 45px rgba(126, 47, 230, 0.025);
+  }
+
+  .window-top {
+    min-height: 48px;
+    padding: 0 12px;
+  }
+
+  .window-title {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .window-status {
+    font-size: 8px;
+  }
+
+  .platform-main {
+    padding: 17px;
+  }
+
+  .preview-heading h3 {
+    font-size: 17px;
+  }
+
+  .preview-heading p {
+    font-size: 11px;
+  }
+
+  .preview-url {
+    overflow: hidden;
+  }
+
+  .url-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .feature-card {
+    padding: 22px;
+  }
+
+  .dashboard {
+    min-height: 100svh;
+  }
+
+  .dashboard-sidebar {
+    padding: 12px;
+    background: rgba(3, 2, 8, 0.94);
+  }
+
+  .dashboard-main {
+    padding: 17px 12px;
+  }
+
+  .dashboard-card {
+    border-radius: 9px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.24);
+  }
+
+  .url-control input,
+  .ai-card textarea {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 500px) {
+  .landing-nav {
+    height: 70px;
+  }
+
+  .nav-brand {
+    font-size: 12px;
+    letter-spacing: 1.2px;
+  }
+
+  .nav-launch {
+    font-size: 11px;
+  }
+
+  .hero {
+    min-height: 530px;
+  }
+
+  .hero-logo {
+    font-size: clamp(43px, 14.5vw, 68px);
+    letter-spacing: -2px;
+  }
+
+  .hero-status {
+    margin-bottom: 24px;
+    font-size: 8px;
+    letter-spacing: 1.9px;
+  }
+
+  .hero-description {
+    margin-top: 29px;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .hero-actions {
+    margin-top: 26px;
+    max-width: 290px;
+  }
+
+  .primary-button,
+  .secondary-button {
+    min-height: 51px;
+    font-size: 13px;
+  }
+
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .platform-main {
+    padding: 14px;
+  }
+
+  .preview-heading {
+    gap: 12px;
+  }
+
+  .preview-badge {
+    font-size: 7px;
+    padding: 5px 7px;
+  }
+
+  .window-dots span {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+@media (max-width: 360px) {
+  .nav-launch {
+    display: none;
+  }
+
+  .hero-logo {
+    font-size: 41px;
+  }
+
+  .hero-description {
+    font-size: 12px;
+  }
+}
