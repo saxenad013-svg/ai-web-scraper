@@ -603,6 +603,7 @@ function getSavedWorkspaceSession() {
 
 function DashboardPage({ onBack }) {
 
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [savedSession] = useState(() => getSavedWorkspaceSession());
   const hasSavedSession = Boolean(
     savedSession &&
@@ -1043,22 +1044,61 @@ function DashboardPage({ onBack }) {
 
         <div className="dashboard-section-label">WORKSPACE</div>
 
-        {navItems.map(([id, icon, label]) => (
-          <button
-            key={id}
-            className={`dashboard-nav ${workspace === id ? "active" : ""}`}
-            onClick={() => setWorkspace(id)}
-          >
-            <span>{icon}</span>
-            {label}
-            {id === "projects" && projects.length > 0 && (
-              <b className="nav-count">{projects.length}</b>
-            )}
-            {id === "history" && history.length > 0 && (
-              <b className="nav-count">{history.length}</b>
-            )}
-          </button>
-        ))}
+        <div className="dashboard-desktop-nav">
+          {navItems.map(([id, icon, label]) => (
+            <button
+              key={id}
+              className={`dashboard-nav ${workspace === id ? "active" : ""}`}
+              onClick={() => setWorkspace(id)}
+            >
+              <span>{icon}</span>
+              {label}
+              {id === "projects" && projects.length > 0 && (
+                <b className="nav-count">{projects.length}</b>
+              )}
+              {id === "history" && history.length > 0 && (
+                <b className="nav-count">{history.length}</b>
+              )}
+            </button>
+          ))}
+        </div>
+
+        <button
+          type="button"
+          className="mobile-menu-button"
+          aria-label="Open workspace menu"
+          aria-expanded={mobileMenuOpen}
+          onClick={() => setMobileMenuOpen((open) => !open)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        {mobileMenuOpen && (
+          <div className="mobile-workspace-menu">
+            {navItems.map(([id, icon, label]) => (
+              <button
+                key={id}
+                type="button"
+                className={`mobile-workspace-item ${workspace === id ? "active" : ""}`}
+                onClick={() => {
+                  setWorkspace(id);
+                  setMobileMenuOpen(false);
+                }}
+              >
+                <span>{icon}</span>
+                <strong>{label}</strong>
+                {id === "projects" && projects.length > 0 && (
+                  <b>{projects.length}</b>
+                )}
+                {id === "history" && history.length > 0 && (
+                  <b>{history.length}</b>
+                )}
+              </button>
+            ))}
+          </div>
+        )}
 
         <div className="dashboard-spacer"></div>
 
